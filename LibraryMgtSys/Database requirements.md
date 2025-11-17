@@ -1,31 +1,18 @@
-# Python Interview Questions & Coding Challenges - Session 6
-
-## Concept Questions
-
-- What are primary keys and foreign keys? How are they used in relational databases?
-- What is the difference between INNER JOIN, LEFT JOIN, and FULL OUTER JOIN?
-- What is normalization?
-- What are the different types of database relationships (1:1, 1:many, many:many) and how do you implement them in SQL?
-- What are transactions and isolation levels? Explain the problems each isolation level solves.
-- What's the difference between PRIMARY KEY, UNIQUE, and FOREIGN KEY constraints?
----
-
-## Coding Challenge 1: SQL Practice
-
-### Description
-Practice the challenges in 
-- https://pgexercises.com/questions/basic/
-- https://pgexercises.com/questions/joins/ 
-
-Extra:
-- https://pgexercises.com/questions/aggregates/
-
-
-## Coding Challenge 2: Library Management System - Database Integration
+# Library Management System - Database Integration
 
 ## Overview
 Extend the Library Management System from Session 4 to integrate with a PostgreSQL database using SQLAlchemy. You will design the database schema, implement SQLAlchemy models, and connect them with the existing OOP classes.
-
+```
+User Code
+    ↓
+Library (business logic + Observer pattern)
+    ↓
+DatabaseManager (CRUD operations)
+    ↓
+SQLAlchemy Models
+    ↓
+PostgreSQL Database
+```
 ---
 
 ## Prerequisites
@@ -215,6 +202,15 @@ Implement all SQLAlchemy models with:
 ### Requirements
 
 Create a database operations layer that integrates with your existing Library Management System. This layer should handle all database CRUD operations.
+
+Key Concepts:
+1. session.add(obj) - Stages object for insertion (not yet in DB)
+2. session.flush() - Sends to DB to get auto-generated IDs, but doesn't commit
+3. session.commit() - Permanently saves all changes (happens automatically in context manager)
+4. session.rollback() - Undoes all changes if error occurs
+5. session.expunge(obj) - Detaches object from session so it can be used outside the with block
+6. Transactions - All operations in a with block succeed together or fail together  
+
 
 ### DatabaseManager Class
 
