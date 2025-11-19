@@ -2,12 +2,14 @@ from sqlalchemy import (
     Column, Integer, String, DateTime, Date, Boolean, Text,
     ForeignKey, CheckConstraint, UniqueConstraint
 )
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship, DeclarativeBase # declarative_base # this is old version
 from sqlalchemy.sql import func
 from datetime import datetime, date
 from typing import List, Optional
 
-Base = declarative_base()
+# Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 
 class LibraryItemModel(Base):

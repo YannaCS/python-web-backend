@@ -27,7 +27,7 @@ pip install uv
 
 ```bash
 # Create virtual environment and activate it
-uv .venv
+uv venv
 
 # Activate (Mac/Linux)
 source .venv/bin/activate
@@ -44,3 +44,5 @@ uv pip freeze > requirements.txt
 # Install from requirements.txt
 uv pip install -r requirements.txt
 ```
+
+⬆️ reason to use uv
