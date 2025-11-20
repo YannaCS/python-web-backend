@@ -38,6 +38,7 @@ def products(id):
     #     {"id": 3, "name": "PS5", "price": 200, "stock": 99},
     # ]
     
+    # product_res is an object not json form
     products_res = db.session.execute(db.select(Product)).scalars().all()
     print('products_res', products_res)
     

@@ -77,7 +77,7 @@ Design a relational database schema that supports all the functionality of the L
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
 | id | INTEGER | PRIMARY KEY, AUTO_INCREMENT | Membership ID |
-| member_id | INTEGER | NOT NULL, UNIQUE, FOREIGN KEY → members(id) | Member ID |
+| member_id | INTEGER | NOT NULL, UNIQUE | Member ID |
 | membership_type | VARCHAR(20) | NOT NULL | 'regular' or 'premium' |
 | borrow_limit | INTEGER | NOT NULL | Maximum items that can be borrowed |
 | expiry_date | DATE | NULL | Expiry date (NULL for regular, required for premium) |
