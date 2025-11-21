@@ -143,10 +143,12 @@ Write a seed script that creates:
 - `create_customers`
 - `update_customers`
 - `delete_customers`
+
 - `view_orders`
 - `create_orders`
 - `update_orders`
 - `delete_orders`
+
 - `manage_users`
 
 **Roles (3 total) with Permission Assignments**:

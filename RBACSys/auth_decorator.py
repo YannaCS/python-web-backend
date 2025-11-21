@@ -41,7 +41,7 @@ def role_required(*allowed_roles):
         @token_required
         def wrapper(*args, **kwargs):
             payload = request.current_user
-            role = payload.get('user_role')
+            role = payload.get('role_name')
             
             if not role or role not in allowed_roles:
                 return {
@@ -52,3 +52,26 @@ def role_required(*allowed_roles):
         return wrapper
     
     return decorator
+
+
+def permission_required(*allowed_permissions):
+    def decorator(func):
+        @wraps(func)
+
+        @token_required
+        def wrapper(*args, **kwargs):
+            payload = request.current_user
+            user_permissions =  payload.get('permissions',[])
+
+            for allowed_permission in allowed_permissions:
+                if allowed_permission not in user_permissions:
+                    return {
+                        'error': 'Insufficient permissions',
+                        'required': allowed_permissions,
+                        'your_permissions': user_permissions
+                    }, 403
+            
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+

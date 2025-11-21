@@ -100,38 +100,33 @@ def login():
     }
     
     
-@app.route('/profile')  
-@token_required  
+@app.route('/profile')   
 def profile():
-    payload = request.current_user
-    return {
-        'email': payload['email'],
-        'name': payload['user_name'],
-        'role': payload['user_role'],
-    }
-  
+    
+    auth_header = request.headers.get('Authorization')
 
-@app.route('/admin-dashboard')   
-@token_required
-@role_required('admin')
-def admin_dashboard():
-    payload = request.current_user
-    return {
-        'message': 'admin only data',
-        'admin': payload['email']
-    }
+    if not auth_header:
+        return {'error': 'no token'}, 401
     
-@app.route('/moderator-dashboard')   
-@role_required('admin', 'moderator')
-def moderator_dashboard():
-    payload = request.current_user
-    return {
-        'message': 'moderator data',
-        'admin': payload['email']
-    }
+    try:
+        token = auth_header.split(' ')[1]  # the first is bearer, so choose the second element
+    except IndexError:
+        return {'error': 'invalid token'}, 401
     
-    
-    
+    try:
+        payload = jwt.decode(token, SECRET_JWT_KEY, algorithms=['HS256'])
+        
+        print(payload)
+
+        return {
+            'email': payload['email'],
+            'username': payload['user_name'],
+            'role': payload['user_role']
+        }
+    except jwt.ExpiredSignatureError:
+        return {'error': 'expired'}, 401
+    except jwt.InvalidTokenError:
+        return {'error': 'invalid token'}, 401
     
 if __name__ == '__main__':
     app.run(debug=True)

@@ -113,25 +113,17 @@ def profile():
 
 @app.route('/admin-dashboard')   
 @token_required
-@role_required('admin')
 def admin_dashboard():
     payload = request.current_user
+    role = payload['user_role']
+    if role != 'admin':
+        return {"error": "unauthorized"}, 403
+    
     return {
         'message': 'admin only data',
         'admin': payload['email']
     }
-    
-@app.route('/moderator-dashboard')   
-@role_required('admin', 'moderator')
-def moderator_dashboard():
-    payload = request.current_user
-    return {
-        'message': 'moderator data',
-        'admin': payload['email']
-    }
-    
-    
-    
+
     
 if __name__ == '__main__':
     app.run(debug=True)
