@@ -1,22 +1,3 @@
-# Python Interview Questions & Coding Challenges - Session 9
-
-## Concept Questions
-
-- Difference between authentication and authorization
-- What are HTTP cookies? How do they work and what are their main use cases?
-- What are the limitations of cookies
-- What is JWT and how does it work?
-- What are the advantages and disadvantages of using JWT compared to traditional session-based authentication?
-- How do you invalidate or blacklist JWT tokens?
-- What is password hashing and why is it important?
-- What is the access / refresh token pattern
-- What is the Oauth2 flow
-
----
-
-## Coding Challenge:
-Add RBAC to Existing Customer & Order API
-
 ## Overview
 Enhance your existing Customer and Order management API with a Role-Based Access Control (RBAC) system. Users will be assigned roles, and roles will have specific permissions that control access to customer and order operations.
 
