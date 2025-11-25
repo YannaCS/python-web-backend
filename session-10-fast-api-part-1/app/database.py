@@ -1,11 +1,14 @@
 from sqlmodel import create_engine
 from sqlmodel import Session
 
-DATABASE_URL = "postgresql://postgres:mypassword@localhost:5432/note-app"
+# from sqlalchemy import URL
+
+DATABASE_URL = "postgresql://postgres:mypassword@localhost:5432/postgres"
 
 engine = create_engine(
     DATABASE_URL,
-    echo=True
+    echo=True,
+    connect_args={"options": "-csearch_path=note_app"}
 )
 
 def get_session():

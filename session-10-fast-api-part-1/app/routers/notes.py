@@ -14,6 +14,8 @@ def create_note(
     note: NoteCreate,
     # db: Session = Depends(get_session)
     # db: Annotated[Session, Depends(get_session)]
+    # or put the above in dependency.py (can add more others)
+    # then just import and call it
     db: DBSession
 ):
     user_id = 1
@@ -27,3 +29,16 @@ def create_note(
     db.add(db_note)
     db.commit()
     return db_note
+
+"""
+When a request comes in:
+
+1. FastAPI sees db: DBSession parameter
+2. Recognizes it needs to call get_session()
+3. Calls get_session() → gets a Session
+4. Passes that Session to your function as db
+5. The function runs
+6. FastAPI completes the yield in get_session() (cleanup happens)
+
+This all happens automatically! 🎉
+"""

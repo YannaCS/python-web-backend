@@ -1,0 +1,4 @@
+{
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "python.analysis.typeCheckingMode": "standard"
+}
